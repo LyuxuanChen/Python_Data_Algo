@@ -19,3 +19,5 @@ def show_length(text):
     print(len(text))
 result = show_length('HKU')
 print(result)
+
+# a test to show git version
