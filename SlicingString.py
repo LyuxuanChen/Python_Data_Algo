@@ -21,3 +21,19 @@ result = show_length('HKU')
 print(result)
 
 # a test to show git version111
+
+contents = ['a', 'b', 'c', 'd']
+print(f"Lockers: {' '.join(contents)}")
+print("Lockers: " + " ".join(contents))
+board = []
+total_row = 6
+total_col = 6
+for i in range(total_row):
+    samplerow = []
+
+    for j in range(total_col):
+        samplerow.append(0)
+
+    board.append(samplerow)
+for i in range(total_row):
+    print("".join(map(str, board[i])))
