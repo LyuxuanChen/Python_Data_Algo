@@ -8,3 +8,6 @@ print('\n')
 
 for i in range(1, lockno):
     print(i)
+
+result = 10 > 5 > 2 == 2
+print(result)
