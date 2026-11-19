@@ -25,7 +25,6 @@ def merge_sort(list):
 
 print(merge_sort(list3))
 
-
 # Factorial calculation:
 def factorial(n):
     if n == 0:
@@ -33,9 +32,8 @@ def factorial(n):
     return factorial(n-1) * n
 print (factorial(4))
 
-
 # Binary Search with recursion:
-def recbinary_search(left, right, readings: list, target: int) -> int:
+def recbinary_search(left, right, readings: list, target: int) -> tuple:
     if left>right:
         return -1
     mid = (left+right)//2
@@ -44,11 +42,91 @@ def recbinary_search(left, right, readings: list, target: int) -> int:
     elif readings[mid]<target:
         return recbinary_search(mid+1, right, readings, target)
     else:
-        return [mid, readings[mid]]
+        return (mid, readings[mid])
 list4 = sorted(list3)
 print(recbinary_search(0, len(list4)-1, list4, 7))
 
+#  Fibonnaci nth number
+def fib(n: int)->int:
+    if n == 0:
+        return 0
+    elif n==1:
+        return 1
+    else:
+        return fib(n-1)+fib(n-2)
+
+print(fib(10))
+
+# Unpacking Childs
+cargo = [[1,2,3], [1,3], 2, 3, [4]]
+def cargo_sum(list):
+    total =  0
+    for item in list:
+        if isinstance(item, int):
+            total+=item
+        else:
+            total+=cargo_sum(item)
+    return total
+
+print (cargo_sum(cargo))
 
 
+# Palindromes:
+def is_palindrome(string):
+    left = 0
+    right = len(string)-1
+    if len(string) <= 1:
+        return True
+    elif string[left] == string[right]:
+        substr = string[left+1:right]
+        # or write
+        # substr = string[1:-1]
+        return is_palindrome(substr)
+    else:
+        return False
+
+print(is_palindrome("abba"))
+print(is_palindrome("abca"))
+
+
+# Assignment 3 Q2:
+# Using Recursive Binary Search, find in a string the starting and ending position of value = target:
+search = [1,2,3,4,4,4,4,5,6]
+def rec_binary_bound(list, target, left, right):
+    # finding lower bound
+    def lower_bound(left, right):
+        if left>right:
+            return -1
+        mid = (left+right)//2
+        if list[mid]>target:
+            return lower_bound(left, mid-1)
+        elif list[mid]<target:
+            return lower_bound(mid+1, right)
+        else:
+            earlier = lower_bound(left, mid-1)
+            if earlier == -1:
+                return mid
+            else:
+                return earlier
+
+        # finding upper bound
+    def upper_bound(left, right):
+        if left > right:
+            return -1
+        mid = (left + right) // 2
+        if list[mid] > target:
+            return upper_bound(left, mid - 1)
+        elif list[mid] < target:
+            return upper_bound(mid + 1, right)
+        else:
+            earlier = upper_bound(mid+1, right)
+            if earlier == -1:
+                return mid
+            else:
+                return earlier
+
+    return (lower_bound(left, right), upper_bound(left, right))
+
+print(rec_binary_bound(search, 4, 0, len(search)-1))
 
 
